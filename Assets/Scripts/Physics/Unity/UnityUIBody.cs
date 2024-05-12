@@ -35,11 +35,9 @@ namespace Physics.Unity {
 			_world.World.RemoveBody(_body);
 		}
 
-		public void SetPosition(Vector2 position) {
-			_body.MoveTo(position);
-		}
-		public Vector2 GetPosition() {
-			return _body.Position;
-		}
+		public void SetPosition(Vector2 position) => _body.MoveTo(position);
+		public Vector2 GetPosition() => _body.Position;
+
+		public void AddForce(Vector2 force) => _body.AddForce(force);
 	}
 }

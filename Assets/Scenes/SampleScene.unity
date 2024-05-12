@@ -300,6 +300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 318030229}
+  force: 0
 --- !u!114 &398439684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -520,6 +521,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 318030229}
+  force: 1000000
 --- !u!114 &742760325
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -608,6 +610,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 318030229}
+  force: 0
 --- !u!114 &868051586
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -716,6 +719,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 318030229}
+  force: 0
 --- !u!114 &1148932631
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -824,6 +828,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 318030229}
+  force: 0
 --- !u!114 &1364220136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1044,6 +1049,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canvas: {fileID: 318030229}
+  force: 0
 --- !u!114 &1551439501
 MonoBehaviour:
   m_ObjectHideFlags: 0

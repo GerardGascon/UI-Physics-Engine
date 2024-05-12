@@ -1,11 +1,10 @@
-using System;
 using Physics.Unity;
 using UnityEngine;
-using UnityEngine.EventSystems;
 
 namespace UI {
-	public class Draggable : MonoBehaviour, IDragHandler {
+	public class Draggable : MonoBehaviour {
 		[SerializeField] private Canvas canvas;
+		[SerializeField] private float force;
 
 		private UnityUIBody _uiBody;
 
@@ -13,8 +12,10 @@ namespace UI {
 			_uiBody = GetComponent<UnityUIBody>();
 		}
 
-		public void OnDrag(PointerEventData eventData) {
-			_uiBody.SetPosition(_uiBody.GetPosition() + eventData.delta / canvas.scaleFactor);
+		private void Update() {
+			Vector2 dir = new(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+
+			_uiBody.AddForce(dir * force);
 		}
 	}
 }
