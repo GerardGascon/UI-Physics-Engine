@@ -1,7 +1,7 @@
 using UnityEngine;
 
 namespace Physics {
-	public sealed class UIBody {
+	internal sealed class UIBody {
 		public Vector2 Position;
 		private Vector2 _force;
 
@@ -42,7 +42,10 @@ namespace Physics {
 		}
 
 		public void Move(Vector2 amount) => Position += amount;
-		public void MoveTo(Vector2 position) => Position = position;
+		public void MoveTo(Vector2 newPosition) {
+			LinearVelocity = newPosition - Position;
+			Position = newPosition;
+		}
 
 		public static UIBody CreateCircle(float radius, Vector2 position, float density, bool isStatic, float restitution) {
 			float area = radius * radius * Mathf.PI;

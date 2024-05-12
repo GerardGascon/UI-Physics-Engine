@@ -2,7 +2,7 @@
 using UnityEngine;
 
 namespace Physics {
-	public class UIWorld {
+	internal class UIWorld {
 		private readonly List<UIBody> _bodies = new();
 
 		public void AddBody(UIBody body) => _bodies.Add(body);

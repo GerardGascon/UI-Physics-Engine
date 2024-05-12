@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 namespace Physics {
-	public static class UICollisions {
+	internal static class UICollisions {
 		public static bool IntersectCircles(UIBody bodyA, UIBody bodyB, out Vector2 normal, out float depth) {
 			normal = Vector2.zero;
 			depth = 0;
