@@ -50,7 +50,7 @@ namespace Physics {
 			if (Vector2.Dot(relativeVelocity, normal) > 0f)
 				return;
 
-			float e = Mathf.Min(bodyA.Restitution, bodyB.Restitution);
+			float e = Mathf.Min(bodyA.Bounciness, bodyB.Bounciness);
 			float j = -(1 + e) * Vector2.Dot(relativeVelocity, normal);
 			j /= bodyA.InvMass + bodyB.InvMass;
 

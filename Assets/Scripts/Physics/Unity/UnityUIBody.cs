@@ -9,15 +9,22 @@ namespace Physics.Unity {
 
 		[Space]
 		[SerializeField] private float radius;
-		[SerializeField] private float density;
+		[SerializeField] private float mass;
 		[SerializeField] private bool isStatic;
-		[SerializeField, Range(0f, 1f)] private float restitution;
+		[SerializeField, Range(0f, 1f)] private float bounciness;
 
 		private UIBody _body;
 		private UnityUIWorld _world;
 
+		private void OnValidate() {
+			if (!Application.isPlaying)
+				return;
+
+			_body.SetStatic(isStatic);
+		}
+
 		private void Awake() {
-			_body = UIBody.CreateCircle(radius, rectTransform.anchoredPosition, density, isStatic, restitution);
+			_body = UIBody.CreateCircle(radius, rectTransform.anchoredPosition, mass, isStatic, bounciness);
 
 			_world = FindObjectOfType<UnityUIWorld>();
 			Assert.IsNotNull(_world, "UnityUIWorld component not present in scene!");

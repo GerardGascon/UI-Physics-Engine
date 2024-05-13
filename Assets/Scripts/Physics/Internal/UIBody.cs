@@ -5,27 +5,29 @@ namespace Physics {
 		public Vector2 Position;
 		private Vector2 _force;
 
-		public readonly float Density;
-		public readonly float Mass;
-		public readonly float InvMass;
-		public readonly float Restitution;
-		public readonly float Area;
+		public float Mass { private set; get; }
+		public float InvMass { private set; get; }
+		public float Bounciness { private set; get; }
 
-		public readonly bool IsStatic;
+		public bool IsStatic { private set; get; }
 
-		public readonly float Radius;
+		public float Radius { private set; get; }
 
 		public Vector2 LinearVelocity { get; internal set; }
 
-		private UIBody(Vector2 position, float density, float mass, float restitution, float area, bool isStatic, float radius) {
+		private UIBody(Vector2 position, float mass, float bounciness, bool isStatic, float radius) {
 			Position = position;
 			LinearVelocity = _force = Vector2.zero;
 
-			Density = density;
 			Mass = mass;
-			Restitution = restitution;
-			Area = area;
+			Bounciness = bounciness;
 
+			SetStatic(isStatic);
+
+			Radius = radius;
+		}
+
+		internal void SetStatic(bool isStatic) {
 			IsStatic = isStatic;
 
 			if (!IsStatic) {
@@ -33,8 +35,6 @@ namespace Physics {
 			} else {
 				InvMass = 0f;
 			}
-
-			Radius = radius;
 		}
 
 		public void Step(float deltaTime) {
@@ -54,12 +54,10 @@ namespace Physics {
 			Position = newPosition;
 		}
 
-		public static UIBody CreateCircle(float radius, Vector2 position, float density, bool isStatic, float restitution) {
-			float area = radius * radius * Mathf.PI;
-			restitution = Mathf.Clamp01(restitution);
-			float mass = density * area;
+		public static UIBody CreateCircle(float radius, Vector2 position, float mass, bool isStatic, float bounciness) {
+			bounciness = Mathf.Clamp01(bounciness);
 
-			return new UIBody(position, density, mass, restitution, area, isStatic, radius);
+			return new UIBody(position, mass, bounciness, isStatic, radius);
 		}
 	}
 }
