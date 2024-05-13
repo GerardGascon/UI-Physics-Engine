@@ -78,13 +78,7 @@ namespace Physics {
 		}
 
 		private static void ResolveCollision(UIBody bodyA, UIBody bodyB, Vector2 normal, float depth) {
-			Vector2 relativeVelocity = bodyB.LinearVelocity - bodyA.LinearVelocity;
-
-			if (Vector2.Dot(relativeVelocity, normal) > 0f)
-				return;
-
-			if (relativeVelocity == Vector2.zero)
-				relativeVelocity = normal * depth;
+			Vector2 relativeVelocity = bodyB.LinearVelocity - bodyA.LinearVelocity + normal * depth;
 
 			float e = Mathf.Min(bodyA.Bounciness, bodyB.Bounciness);
 			float j = -(1 + e) * Vector2.Dot(relativeVelocity, normal);
