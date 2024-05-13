@@ -1,8 +1,9 @@
 using Physics.Unity;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace UI {
-	public class Draggable : MonoBehaviour {
+	public class Draggable : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler, IPointerEnterHandler, IPointerExitHandler {
 		[SerializeField] private Canvas canvas;
 		[SerializeField] private float force;
 
@@ -12,10 +13,24 @@ namespace UI {
 			_uiBody = GetComponent<UnityUIBody>();
 		}
 
-		private void Update() {
-			Vector2 dir = new(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+		public void OnDrag(PointerEventData eventData) {
+			_uiBody.Move(eventData.delta);
+		}
 
-			_uiBody.AddForce(dir * force);
+		public void OnBeginDrag(PointerEventData eventData) {
+			_uiBody.SetEnabledState(false);
+		}
+
+		public void OnEndDrag(PointerEventData eventData) {
+			_uiBody.SetEnabledState(true);
+		}
+
+		public void OnPointerEnter(PointerEventData eventData) {
+			_uiBody.SetStaticState(true);
+		}
+
+		public void OnPointerExit(PointerEventData eventData) {
+			_uiBody.SetStaticState(false);
 		}
 	}
 }

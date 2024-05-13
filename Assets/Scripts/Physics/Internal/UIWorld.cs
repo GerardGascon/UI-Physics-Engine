@@ -27,6 +27,8 @@ namespace Physics {
 
 					if (bodyA.IsStatic && bodyB.IsStatic)
 						continue;
+					if (!bodyA.Enabled || !bodyB.Enabled)
+						continue;
 
 					if (UICollisions.IntersectCircles(bodyA, bodyB, out Vector2 normal, out float depth)) {
 						if (bodyA.IsStatic) {
@@ -49,6 +51,9 @@ namespace Physics {
 
 			if (Vector2.Dot(relativeVelocity, normal) > 0f)
 				return;
+
+			if (relativeVelocity == Vector2.zero)
+				relativeVelocity = normal * depth;
 
 			float e = Mathf.Min(bodyA.Bounciness, bodyB.Bounciness);
 			float j = -(1 + e) * Vector2.Dot(relativeVelocity, normal);

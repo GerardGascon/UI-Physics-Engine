@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Assertions;
 
 namespace Physics {
 	internal sealed class UIBody {
@@ -10,17 +11,19 @@ namespace Physics {
 		public float Bounciness { private set; get; }
 
 		public bool IsStatic { private set; get; }
+		public bool Enabled { set; get; }
 
 		public float Radius { private set; get; }
 
 		public Vector2 LinearVelocity { get; internal set; }
 
-		private UIBody(Vector2 position, float mass, float bounciness, bool isStatic, float radius) {
+		private UIBody(Vector2 position, float mass, float bounciness, bool isStatic, float radius, bool enabled) {
 			Position = position;
 			LinearVelocity = _force = Vector2.zero;
 
 			Mass = mass;
 			Bounciness = bounciness;
+			Enabled = enabled;
 
 			SetStatic(isStatic);
 
@@ -30,10 +33,11 @@ namespace Physics {
 		internal void SetStatic(bool isStatic) {
 			IsStatic = isStatic;
 
-			if (!IsStatic) {
-				InvMass = 1f / Mass;
-			} else {
+			if (IsStatic) {
+				LinearVelocity = Vector2.zero;
 				InvMass = 0f;
+			} else {
+				InvMass = 1f / Mass;
 			}
 		}
 
@@ -54,10 +58,14 @@ namespace Physics {
 			Position = newPosition;
 		}
 
-		public static UIBody CreateCircle(float radius, Vector2 position, float mass, bool isStatic, float bounciness) {
+		public static UIBody CreateCircle(float radius, Vector2 position, float mass, bool isStatic, float bounciness,
+			bool enabled)
+		{
 			bounciness = Mathf.Clamp01(bounciness);
 
-			return new UIBody(position, mass, bounciness, isStatic, radius);
+			Assert.AreNotEqual(0, mass, "Mass cannot be 0");
+
+			return new UIBody(position, mass, bounciness, isStatic, radius, enabled);
 		}
 	}
 }

@@ -283,10 +283,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rectTransform: {fileID: 398439681}
   canvas: {fileID: 318030229}
+  isEnabled: 1
   radius: 50
-  density: 1
+  mass: 1
   isStatic: 0
-  restitution: 1
+  bounciness: 1
 --- !u!114 &398439683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -536,10 +537,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rectTransform: {fileID: 742760321}
   canvas: {fileID: 318030229}
+  isEnabled: 1
   radius: 50
-  density: 1
+  mass: 1
   isStatic: 0
-  restitution: 1
+  bounciness: 1
 --- !u!1 &868051582
 GameObject:
   m_ObjectHideFlags: 0
@@ -593,10 +595,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rectTransform: {fileID: 868051583}
   canvas: {fileID: 318030229}
+  isEnabled: 1
   radius: 50
-  density: 5
+  mass: 1
   isStatic: 0
-  restitution: 1
+  bounciness: 1
 --- !u!114 &868051585
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -702,10 +705,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rectTransform: {fileID: 1148932628}
   canvas: {fileID: 318030229}
+  isEnabled: 1
   radius: 50
-  density: 1
+  mass: 1
   isStatic: 0
-  restitution: 1
+  bounciness: 1
 --- !u!114 &1148932630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -811,10 +815,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rectTransform: {fileID: 1364220133}
   canvas: {fileID: 318030229}
+  isEnabled: 1
   radius: 50
-  density: 1
+  mass: 1
   isStatic: 0
-  restitution: 1
+  bounciness: 1
 --- !u!114 &1364220135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1032,10 +1037,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rectTransform: {fileID: 1551439498}
   canvas: {fileID: 318030229}
+  isEnabled: 1
   radius: 50
-  density: 1
+  mass: 1
   isStatic: 0
-  restitution: 1
+  bounciness: 1
 --- !u!114 &1551439500
 MonoBehaviour:
   m_ObjectHideFlags: 0
