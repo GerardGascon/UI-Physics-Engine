@@ -7,6 +7,7 @@ namespace Physics {
 
 		public readonly float Density;
 		public readonly float Mass;
+		public readonly float InvMass;
 		public readonly float Restitution;
 		public readonly float Area;
 
@@ -26,6 +27,12 @@ namespace Physics {
 			Area = area;
 
 			IsStatic = isStatic;
+
+			if (!IsStatic) {
+				InvMass = 1f / Mass;
+			} else {
+				InvMass = 0f;
+			}
 
 			Radius = radius;
 		}
