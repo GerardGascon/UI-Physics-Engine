@@ -53,10 +53,7 @@ namespace Physics {
 		}
 
 		public void Move(Vector2 amount) => Position += amount;
-		public void MoveTo(Vector2 newPosition) {
-			LinearVelocity = newPosition - Position;
-			Position = newPosition;
-		}
+		public void MoveTo(Vector2 newPosition) => Position = newPosition;
 
 		public static UIBody CreateCircle(float radius, Vector2 position, float mass, bool isStatic, float bounciness,
 			bool enabled)

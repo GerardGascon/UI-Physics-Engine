@@ -5,6 +5,12 @@ namespace Physics {
 	internal class UIWorld {
 		private readonly List<UIBody> _bodies = new();
 
+		private readonly Rect _screenRect;
+
+		public UIWorld(Rect screenRect) {
+			_screenRect = screenRect;
+		}
+
 		public void AddBody(UIBody body) => _bodies.Add(body);
 		public void RemoveBody(UIBody body) => _bodies.Remove(body);
 
@@ -19,6 +25,31 @@ namespace Physics {
 		}
 
 		private void CollisionStep(float deltaTime) {
+			CheckCollisionsBetweenBodies();
+			CheckCollisionsAgainstBorders();
+		}
+
+		private void CheckCollisionsAgainstBorders() {
+			foreach (UIBody body in _bodies) {
+				if (body.Position.x - body.Radius < _screenRect.x) {
+					body.MoveTo(new Vector2(_screenRect.x + body.Radius, body.Position.y));
+					body.LinearVelocity = new Vector2(-body.LinearVelocity.x, body.LinearVelocity.y);
+				}else if (body.Position.x + body.Radius > _screenRect.width) {
+					body.MoveTo(new Vector2(_screenRect.width - body.Radius, body.Position.y));
+					body.LinearVelocity = new Vector2(-body.LinearVelocity.x, body.LinearVelocity.y);
+				}
+
+				if (body.Position.y + body.Radius > _screenRect.y) {
+					body.MoveTo(new Vector2(body.Position.x, _screenRect.y - body.Radius));
+					body.LinearVelocity = new Vector2(body.LinearVelocity.x, -body.LinearVelocity.y);
+				}else if (body.Position.y - body.Radius < -_screenRect.height) {
+					body.MoveTo(new Vector2(body.Position.x, -_screenRect.height + body.Radius));
+					body.LinearVelocity = new Vector2(body.LinearVelocity.x, -body.LinearVelocity.y);
+				}
+			}
+		}
+
+		private void CheckCollisionsBetweenBodies() {
 			for (int i = 0; i < _bodies.Count - 1; i++) {
 				UIBody bodyA = _bodies[i];
 
